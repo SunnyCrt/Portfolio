@@ -1,0 +1,21 @@
+.personal-project-hero {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 520px;
+  object-fit: contain;
+}
+.personal-project-info {
+  margin-bottom: 48px;
+}
+.personal-project-info > h2 {
+  font:
+    600 11px Manrope,
+    sans-serif;
+  letter-spacing: 0.12em;
+  color: #6e89a4;
+  margin: 0;
+}
+.personal-project-info .work-detail-meta {
+  margin-top: 20px;
+}

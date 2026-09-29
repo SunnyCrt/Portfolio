@@ -13,7 +13,6 @@ html {
 }
 body {
   margin: 0;
-  background: var(--paper);
   color: var(--ink);
   font-family: "DM Sans", "Noto Sans KR", sans-serif;
 }
@@ -88,7 +87,7 @@ nav a.active {
     700 clamp(58px, 7vw, 110px)/1.03 Manrope,
     sans-serif;
   letter-spacing: -0.09em;
-  margin: 35px 0 30px;
+  margin: 50px 0 45px;
 }
 .hero h1 em {
   font-style: normal;
@@ -195,7 +194,6 @@ nav a.active {
   color: #8294a6;
 }
 .career {
-  background: #edf1f2;
   padding: 86px 0 95px;
 }
 .career-list {
@@ -314,7 +312,6 @@ nav a.active {
   margin: 0;
 }
 .end {
-  background: #283442;
   color: #f8fafb;
   padding: 74px 0 80px;
 }
@@ -405,7 +402,6 @@ footer {
   --paper: #101923;
 }
 body {
-  background: #101923;
   color: var(--ink);
 }
 header {
@@ -479,9 +475,6 @@ nav a.active {
   letter-spacing: 0.12em;
   color: #8ca7b8;
 }
-.career {
-  background: #192633;
-}
 .career-list {
   border-color: #40515d;
 }
@@ -500,9 +493,6 @@ nav a.active {
 }
 .section-head h2 span {
   color: #a7c5d9 !important;
-}
-.works {
-  background: #101923;
 }
 .work-image {
   background: linear-gradient(135deg, #30465a, #1d3446) !important;
@@ -529,9 +519,6 @@ nav a.active {
 .work-meta,
 .work p {
   color: #9bb0bf;
-}
-.end {
-  background: #203344;
 }
 .end-card {
   border-color: #637b8a;
@@ -579,17 +566,10 @@ footer {
   --paper: #f9fbfc;
 }
 body {
-  background: #f9fbfc;
   color: #242d37;
 }
 /* The masthead and hero form one continuous midnight panel. */
 .top-dark {
-  background: radial-gradient(
-    ellipse at 77% 42%,
-    #233b4c 0%,
-    #142331 42%,
-    #101923 78%
-  );
   color: #edf4f8;
 }
 .top-dark header {
@@ -634,7 +614,6 @@ body {
   background: linear-gradient(90deg, #7f9fba, #d7e7ee 55%, #f4f9fc);
 }
 .career {
-  background: #f1f7fa;
   padding: 100px 0 108px;
 }
 .career .section-head h2,
@@ -670,7 +649,6 @@ body {
   box-shadow: 0 8px 22px #6c8ba014;
 }
 .works {
-  background: #fff;
   padding: 110px 0 125px;
 }
 .works .work h3 {
@@ -704,7 +682,6 @@ body {
   border-color: #ffffffd0;
 }
 .end {
-  background: #182938;
   color: #f5f9fb;
 }
 .end-card {
@@ -724,23 +701,6 @@ body {
     padding: 80px 0;
   }
 }
-
-/* Deep-dark scroll atmosphere: preserve near-black hero until the next section approaches. */
-body {
-  background: #0b1017;
-  background: var(--scroll-bg, #0b1017);
-}
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background: var(--scroll-bg, #0b1017);
-}
-.top-dark {
-  background: transparent;
-}
 /* Keep the hero art moody rather than turning its panel gray. */
 .top-dark .dark-art {
   background: linear-gradient(145deg, #162431, #0a121c 62%, #1c3242);
@@ -748,7 +708,6 @@ body::before {
 .career,
 .works,
 .end {
-  background: transparent !important;
   position: relative;
 }
 .career {
@@ -766,48 +725,13 @@ body::before {
 .top-dark .hero {
   min-height: 720px;
 }
-/* Gentle translucent panel keeps the artwork distinct while the background shifts. */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 }
-
-/* FINAL DESIGN: scroll transition only between intro and reading area */
-:root {
-  --scroll-bg: #0b1017;
-}
-body {
-  background: #f8fbfc;
-}
-body::before {
-  z-index: -1;
-  background: var(--scroll-bg);
-}
-.top-dark {
-  background: var(--scroll-bg);
-}
 .top-dark .hero {
   min-height: 720px;
-}
-.transition-space {
-  height: clamp(360px, 72vh, 720px);
-  background: var(--scroll-bg);
-  position: relative;
-}
-.transition-space::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 12%;
-  width: 1px;
-  height: 80px;
-  background: linear-gradient(transparent, #93adc2, transparent);
-  opacity: 0.55;
-}
-.career,
-.works {
-  background: #f8fbfc !important;
 }
 .career {
   padding-top: 155px;
@@ -818,7 +742,6 @@ body::before {
   padding-bottom: 210px;
 }
 .end {
-  background: #101923 !important;
   padding-top: 115px;
   padding-bottom: 85px;
 }
@@ -844,9 +767,6 @@ body::before {
   color: #71869a;
 }
 @media (max-width: 760px) {
-  .transition-space {
-    height: clamp(260px, 56vh, 480px);
-  }
   .career {
     padding-top: 100px;
     padding-bottom: 115px;
@@ -859,29 +779,20 @@ body::before {
     padding-top: 90px;
   }
 }
-
-/* REFINED FINAL: predictable section-local surfaces on all viewport sizes */
-html,
-body {
-  background: #f8fbfc !important;
-}
-body::before {
-  display: none !important;
-}
 .top-dark {
-  background: #0b1017 !important;
   position: relative;
 }
 .top-dark .hero {
   min-height: min(790px, 90svh) !important;
   padding-bottom: 105px;
 }
-/* A visible cue near the bottom of the hero, before the transition begins. */
+/* Place the scroll cue inside the initial viewport; it scrolls with the page. */
 .top-dark::after {
   content: "";
   position: absolute;
   left: 50%;
-  bottom: 12px;
+  top: calc(100svh - 145px);
+  bottom: auto;
   width: 1px;
   height: 115px;
   background: linear-gradient(
@@ -894,23 +805,8 @@ body::before {
   opacity: 0.75;
   pointer-events: none;
 }
-.transition-space {
-  height: clamp(240px, 39vh, 410px) !important;
-  background: linear-gradient(
-    180deg,
-    #0b1017 0%,
-    #14212d 18%,
-    #4a657c 48%,
-    #b7cbd8 77%,
-    #f8fbfc 100%
-  ) !important;
-}
-.transition-space::after {
-  display: none !important;
-}
 .career,
 .works {
-  background: #f8fbfc !important;
   position: relative;
 }
 .career {
@@ -927,7 +823,6 @@ body::before {
   width: 100%;
 }
 .end {
-  background: #0b1017 !important;
   color: #f5f9fb !important;
   position: relative;
   padding: 115px 0 85px !important;
@@ -944,9 +839,6 @@ body::before {
     min-height: 78svh !important;
     padding-bottom: 85px;
   }
-  .transition-space {
-    height: clamp(190px, 34vh, 310px) !important;
-  }
   .career {
     padding-top: 80px !important;
     padding-bottom: 100px !important;
@@ -959,43 +851,6 @@ body::before {
   }
 }
 
-/* Scroll-controlled transition: no static gradient anywhere. */
-.top-dark {
-  background: var(--transition-color, #0b1017) !important;
-}
-.transition-space {
-  background: var(--transition-color, #0b1017) !important;
-  background-image: none !important;
-  height: clamp(340px, 65vh, 660px) !important;
-  position: relative;
-}
-.transition-space::before {
-  content: "";
-  display: block;
-  position: absolute;
-  left: 50%;
-  top: 14%;
-  height: 62px;
-  width: 1px;
-  background: #9bb6c8;
-  opacity: 0.55;
-}
-.transition-space::after {
-  display: none !important;
-}
-.career,
-.works {
-  background: #f8fbfc !important;
-}
-.end {
-  background: #0b1017 !important;
-}
-@media (max-width: 760px) {
-  .transition-space {
-    height: clamp(260px, 52vh, 460px) !important;
-  }
-}
-
 /* Production accessibility and bilingual typography, retaining the reference layout. */
 button,
 a {
@@ -1003,15 +858,6 @@ a {
 }
 button {
   font: inherit;
-}
-.language-toggle {
-  color: #dcebf4;
-  border: 1px solid #52697b;
-  background: transparent;
-  padding: 7px 9px;
-  border-radius: 4px;
-  cursor: pointer;
-  letter-spacing: 0;
 }
 a:focus-visible,
 button:focus-visible {
@@ -1029,16 +875,6 @@ button:focus-visible {
 }
 .skip-link:focus {
   top: 16px;
-}
-html[lang="ko"] .hero h1 {
-  font-family: "Manrope", "Noto Sans KR", sans-serif;
-  font-size: clamp(58px, 6.5vw, 96px);
-  line-height: 1.18;
-  letter-spacing: -0.075em;
-}
-html[lang="ko"] .section-head h2 {
-  font-family: "Manrope", "Noto Sans KR", sans-serif;
-  letter-spacing: -0.06em;
 }
 .hero h1,
 .section-head h2,
@@ -1080,9 +916,6 @@ div[id] {
     min-height: 0 !important;
     gap: 42px;
     padding-top: 55px;
-  }
-  html[lang="ko"] .hero h1 {
-    font-size: clamp(54px, 12vw, 72px);
   }
   .hero-foot {
     gap: 18px;
@@ -1129,4 +962,392 @@ div[id] {
     scroll-behavior: auto !important;
     transition: none !important;
   }
+}
+.career {
+  padding-bottom: 200px !important;
+}
+.works {
+  padding-top: 150px !important;
+  padding-bottom: 275px !important;
+}
+@media (max-width: 760px) {
+  .career {
+    padding-bottom: 130px !important;
+  }
+  .works {
+    padding-top: 115px !important;
+    padding-bottom: 180px !important;
+  }
+}
+
+/* Quiet contact details below the introduction. */
+.hero-contact {
+  margin-top: 40px;
+  position: relative;
+}
+.contact-label {
+  font:
+    600 10px Manrope,
+    sans-serif;
+  letter-spacing: 0.16em;
+  color: #8abee2;
+  margin-bottom: 8px;
+}
+.contact-name {
+  flex-shrink: 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #f5f8fc;
+  white-space: nowrap;
+}
+.contact-separator {
+  flex-shrink: 0;
+  color: #8399aa;
+  font-size: 13px;
+}
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+.contact-email {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #f5f8fc;
+  overflow-wrap: anywhere;
+  min-width: 0;
+  user-select: text;
+}
+.contact-copy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 1px solid #c4d9e829;
+  border-radius: 4px;
+  background: transparent;
+  color: #c4d9e8;
+  cursor: pointer;
+}
+.contact-copy:hover {
+  color: #edf3f8;
+  border-color: #c4d9e866;
+}
+.contact-copy:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.contact-status {
+  font-size: 11px;
+  line-height: 1.6;
+  color: #a9bdca;
+  min-height: 18px;
+  margin-top: 4px;
+}
+.hero-contact + .hero-foot {
+  margin-top: 60px;
+}
+@media (max-width: 760px) {
+  .hero-contact + .hero-foot {
+    margin-top: 20px;
+  }
+}
+
+/* Shift both introduction columns together without changing section geometry. */
+.top-dark .hero > div {
+  position: relative;
+  top: 80px;
+}
+
+/* Keep authored title lines intact within the desktop text column. */
+.hero-title-line {
+  display: block;
+}
+@media (min-width: 761px) {
+  .hero-intro {
+    container-type: inline-size;
+  }
+  .hero h1 {
+    font-size: min(clamp(58px, 7vw, 110px), 16cqw);
+  }
+  .hero-title-line {
+    white-space: nowrap;
+    overflow-wrap: normal;
+  }
+}
+/* Scroll-driven color transition: no gradient is visible on initial load. */
+:root {
+  --home-background: #0b1017;
+  --reading-background: #f8fbfc;
+}
+html,
+body {
+  background: var(--reading-background);
+}
+.top-dark {
+  --scroll-background: var(--home-background);
+  background: var(--scroll-background);
+}
+.transition-space {
+  /* Preserve the existing section gap; it shares HOME's live background. */
+  position: relative;
+  height: clamp(240px, 45vh, 460px);
+  background: transparent;
+}
+.career {
+  --scroll-background: var(--home-background);
+  background: var(--reading-background);
+  isolation: isolate;
+}
+.career::before {
+  /* Blend from the live preceding color into the reading-section white.
+     The top pixel matches HOME exactly, so no horizontal seam appears. */
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: min(240px, 28vh);
+  background: linear-gradient(
+    to bottom,
+    var(--scroll-background),
+    var(--reading-background)
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+.career > .shell {
+  position: relative;
+  z-index: 1;
+}
+.works {
+  background: var(--reading-background);
+}
+.end {
+  background: var(--home-background);
+}
+@media (max-width: 760px) {
+  .transition-space {
+    height: clamp(190px, 36vh, 320px);
+  }
+}
+
+/* Header shares the body shell; symmetric shell padding keeps menus viewport-centered. */
+.site-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 1000;
+  display: block;
+  height: 88px;
+  min-height: 0;
+  padding: 0;
+  color: #edf4f8;
+  background: rgba(11, 16, 23, 0.96);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #40515d;
+}
+.site-header-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.site-header .logo {
+  position: relative;
+  z-index: 1;
+  white-space: nowrap;
+  color: #edf4f8;
+}
+.site-header nav {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 37px;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+  font-family: "Noto Sans KR", "DM Sans", sans-serif;
+  font-size: 12px;
+}
+.site-header nav a {
+  color: #a5b9c9;
+}
+.site-header nav a,
+.site-header nav a.active {
+  border-bottom: 0;
+}
+.site-header nav a.active {
+  color: #f2f7fa;
+}
+.site-header nav a:hover,
+.site-header .logo:hover {
+  color: #fff;
+}
+.top-dark {
+  padding-top: 88px;
+}
+#home,
+#works,
+#personal,
+#qa {
+  scroll-margin-top: 104px;
+}
+.skip-link {
+  z-index: 1001;
+}
+@media (max-width: 760px) {
+  .site-header {
+    height: 70px;
+  }
+  .top-dark {
+    padding-top: 70px;
+  }
+  .site-header-inner {
+    align-items: flex-start;
+    padding-top: 8px;
+  }
+  .site-header .logo {
+    font-size: 16px;
+  }
+  .site-header nav {
+    top: 35px;
+    gap: 20px;
+    font-size: 11px;
+  }
+  #home,
+  #works,
+  #personal,
+  #qa {
+    scroll-margin-top: 86px;
+  }
+}
+@media (max-width: 440px) {
+  .site-header {
+    height: 86px;
+  }
+  .top-dark {
+    padding-top: 86px;
+  }
+  .site-header-inner {
+    padding-top: 10px;
+  }
+  .site-header nav {
+    top: 45px;
+  }
+  #home,
+  #works,
+  #personal,
+  #qa {
+    scroll-margin-top: 102px;
+  }
+}
+
+/* Experience details: shared rows align dates despite different text lengths. */
+.career-list {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.career-item {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 7;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  align-items: start;
+}
+.career-item .game-icon {
+  overflow: hidden;
+}
+.career-item .game-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.career-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+}
+.career-tags li {
+  max-width: 100%;
+  padding: 2px 6px;
+  border: 0;
+  border-radius: 999px;
+  color: #526f89;
+  background: #e4eef7;
+  font-size: 10px;
+  line-height: 1.5;
+}
+.career-responsibilities {
+  margin-top: 22px;
+  font-size: 12px;
+  line-height: 1.85;
+  color: #526a7f;
+}
+.career-responsibilities h4 {
+  margin: 0 0 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #637f96;
+}
+.career-responsibilities ul {
+  margin: 0;
+  padding-left: 15px;
+}
+.career-responsibilities li + li {
+  margin-top: 7px;
+}
+@media (min-width: 761px) and (max-width: 1100px) {
+  .career-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .career-item:nth-child(2n) {
+    border-right: 0;
+    margin-right: 0;
+  }
+}
+@media (min-width: 561px) and (max-width: 760px) {
+  .career-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 560px) {
+  .career-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .career-item,
+  .career-item:nth-child(2n) {
+    border-right: 0;
+    margin: 0;
+    padding: 26px 0;
+  }
+  .career-item + .career-item {
+    border-top: 1px solid #cbd9e3;
+  }
+}
+
+/* HOME uses the Archive thumbnail in the existing card image area. */
+.works .work .selected-work-thumbnail {
+  background: #e4eef5 !important;
+}
+.works .selected-work-thumbnail::before,
+.works .selected-work-thumbnail::after {
+  content: none;
+}
+.selected-work-thumbnail img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }

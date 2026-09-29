@@ -1,0 +1,294 @@
+/* Game collage: replace the previous GameCollage.css in full. */
+.game-collage {
+  --collage-progress: 0;
+  position: relative;
+  width: 100%;
+  height: 510px;
+  isolation: isolate;
+  container-type: inline-size;
+  overflow: visible;
+  background: transparent;
+}
+.game-collage::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  inset: 2% -3% 0 -3%;
+  background:
+    radial-gradient(
+      ellipse 53% 43% at 50% 50%,
+      #8fb7d52a,
+      #6d8fa013 57%,
+      transparent 100%
+    ),
+    radial-gradient(ellipse 38% 32% at 52% 72%, #f2c7ac10, transparent 90%);
+  filter: blur(15px);
+}
+.collage-light-trails {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.55;
+  transform: translateY(calc(-9px * var(--collage-progress)));
+}
+.collage-icon {
+  position: absolute;
+  z-index: var(--depth);
+  width: var(--size);
+  aspect-ratio: 1;
+  left: var(--x);
+  top: var(--y);
+  border-radius: 19%;
+  transform: translate3d(
+    calc(var(--dx) * var(--collage-progress)),
+    calc(var(--dy) * var(--collage-progress)),
+    0
+  );
+  will-change: transform;
+}
+.collage-reveal {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  box-shadow:
+    0 13px 28px #0006,
+    0 0 0 1px #d5e7f51b;
+  animation: game-icon-reveal 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: var(--reveal-delay);
+}
+.collage-icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+/* Deliberately irregular editorial layout. No icon rotation. */
+.collage-icon-mabinogi {
+  --size: 39%;
+  --x: 33%;
+  --y: 34%;
+  --depth: 6;
+  --dx: 0px;
+  --dy: -42px;
+  --reveal-delay: 0.35s;
+}
+.collage-icon-chronicles {
+  --size: 27%;
+  --x: 3%;
+  --y: 24%;
+  --depth: 4;
+  --dx: max(-23px, -2cqw);
+  --dy: -82px;
+  --reveal-delay: 0.55s;
+}
+.collage-icon-egon {
+  --size: 14%;
+  --x: 77%;
+  --y: 12%;
+  --depth: 2;
+  --dx: 14px;
+  --dy: -48px;
+  --reveal-delay: 0.7s;
+}
+.collage-icon-storypick {
+  --size: 22%;
+  --x: 74%;
+  --y: 51%;
+  --depth: 4;
+  --dx: min(25px, 3cqw);
+  --dy: -17px;
+  --reveal-delay: 0.85s;
+}
+.collage-icon-wannabe {
+  --size: 21%;
+  --x: 9%;
+  --y: 69%;
+  --depth: 3;
+  --dx: -16px;
+  --dy: 18px;
+  --reveal-delay: 1s;
+}
+.collage-icon-yeoju {
+  --size: 12%;
+  --x: 65%;
+  --y: 78%;
+  --depth: 2;
+  --dx: 17px;
+  --dy: 34px;
+  --reveal-delay: 1.15s;
+}
+.collage-icon-mabinogi .collage-reveal {
+  box-shadow:
+    0 17px 38px #0008,
+    0 0 32px #b5d6df18,
+    0 0 0 1px #e6eaf02a;
+}
+@keyframes game-icon-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.94);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+@media (max-width: 760px) {
+  .game-collage {
+    height: auto;
+    aspect-ratio: 1 / 1.06;
+  }
+  .collage-icon-mabinogi {
+    --dy: -20px;
+  }
+  .collage-icon-chronicles {
+    --dx: max(-10px, -2cqw);
+    --dy: -38px;
+  }
+  .collage-icon-egon {
+    --dx: 7px;
+    --dy: -24px;
+  }
+  .collage-icon-storypick {
+    --dx: min(10px, 3cqw);
+    --dy: -9px;
+  }
+  .collage-icon-wannabe {
+    --dx: -8px;
+    --dy: 9px;
+  }
+  .collage-icon-yeoju {
+    --dx: 8px;
+    --dy: 16px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .collage-icon,
+  .collage-light-trails {
+    transform: none;
+    will-change: auto;
+  }
+  .collage-reveal {
+    animation: none;
+    opacity: 1;
+    filter: none;
+  }
+}
+
+/* Preserve the existing introduction entrance when replacing the artwork CSS. */
+.top-dark .hero > div:first-child {
+  animation: hero-intro-reveal 0.45s ease-out both;
+}
+@keyframes hero-intro-reveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .top-dark .hero > div:first-child {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* --- Subtle dimensional glass treatment: original icon artwork is untouched. --- */
+.collage-icon {
+  isolation: isolate;
+}
+/* Soft reflected light behind each icon, not a flat panel. */
+.collage-icon::before {
+  content: "";
+  position: absolute;
+  inset: -17%;
+  z-index: -1;
+  border-radius: 35%;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at 47% 44%,
+    rgba(165, 218, 242, 0.3),
+    rgba(116, 174, 213, 0.11) 43%,
+    transparent 72%
+  );
+  filter: blur(16px);
+  opacity: 0.64;
+}
+.collage-reveal {
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgba(232, 245, 255, 0.38);
+  background: rgba(190, 220, 242, 0.06);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.48),
+    inset 1px 0 0 rgba(225, 244, 255, 0.2),
+    inset 0 -2px 4px rgba(9, 19, 38, 0.26),
+    0 14px 32px rgba(0, 0, 0, 0.4),
+    0 0 19px rgba(158, 204, 234, 0.13);
+}
+/* Rim lighting and a restrained diagonal glass reflection. */
+.collage-reveal::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(
+    148deg,
+    rgba(255, 255, 255, 0.23) 0%,
+    rgba(235, 248, 255, 0.085) 16%,
+    transparent 35%,
+    transparent 75%,
+    rgba(210, 230, 255, 0.07) 100%
+  );
+  box-shadow:
+    inset 0 2px 2px rgba(255, 255, 255, 0.32),
+    inset 2px 0 2px rgba(239, 248, 255, 0.12),
+    inset -2px -3px 5px rgba(7, 18, 38, 0.25);
+}
+/* Hero icon: clearer halo, more substantial glass rim. */
+.collage-icon-mabinogi::before {
+  inset: -32%;
+  background:
+    radial-gradient(
+      ellipse at 44% 40%,
+      rgba(158, 211, 242, 0.42),
+      rgba(116, 174, 211, 0.18) 38%,
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse at 68% 67%,
+      rgba(236, 188, 160, 0.19),
+      transparent 55%
+    );
+  filter: blur(22px);
+  opacity: 0.9;
+}
+.collage-icon-mabinogi .collage-reveal {
+  border-color: rgba(233, 247, 255, 0.48);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.56),
+    inset 0 -3px 6px rgba(8, 19, 35, 0.29),
+    0 19px 41px rgba(0, 0, 0, 0.45),
+    0 0 28px rgba(155, 209, 242, 0.21);
+}
+/* Supporting icons are deliberately quieter than the central icon. */
+.collage-icon-egon::before,
+.collage-icon-yeoju::before {
+  opacity: 0.28;
+}
+@media (prefers-reduced-motion: reduce) {
+  .collage-icon::before {
+    transition: none;
+  }
+}

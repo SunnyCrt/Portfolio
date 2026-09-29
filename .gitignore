@@ -13,3 +13,25 @@ Thumbs.db
 coverage/
 playwright-report/
 test-results/
+
+# Local tooling and caches
+.idea/
+.vite/
+.cache/
+.eslintcache
+.stylelintcache
+.npm/
+playwright/.cache/
+blob-report/
+# Editor backups and OS metadata
+*.swp
+*.swo
+*~
+*.bak
+Desktop.ini
+# Local credentials (never commit real secrets)
+.npmrc
+*.pem
+*.key
+*.p12
+*.pfx
