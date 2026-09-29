@@ -1351,3 +1351,19 @@ body {
   object-fit: cover;
   object-position: center;
 }
+
+/* Mobile hero stacks vertically: reserve real space for its content, and
+   anchor the scroll cue in the transition area after the collage. */
+@media (max-width: 760px) {
+  .top-dark .hero {
+    padding-top: 135px;
+    padding-bottom: 25px;
+  }
+  .top-dark .hero > div {
+    top: 0;
+  }
+  .top-dark::after {
+    top: auto;
+    bottom: clamp(40px, 8vh, 80px);
+  }
+}
