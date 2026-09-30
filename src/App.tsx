@@ -1,6 +1,7 @@
+import { useHashNavigation } from "./hooks/useHashNavigation";
 import PersonalProjectPage from "./pages/PersonalProjectPage";
 import { personalProjects, personalProjectHref } from "./data/personalProjects";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useLayoutEffect } from "react";
 import HomePage from "./pages/HomePage";
 import QAPage from "./pages/QAPage";
 import WorkDetailPage from "./pages/WorkDetailPage";
@@ -11,20 +12,16 @@ import { qaPage } from "./data/qa";
 
 // A hash route works on static hosting without server rewrite rules.
 export default function App() {
+  const navigation = useHashNavigation();
   const getPage = () => {
-    const hash = window.location.hash;
+    const hash = navigation.hash;
     if (["#/qa", "#qa-content"].includes(hash)) return "qa";
     if (["#/works", "#works-content"].includes(hash)) return "works";
     if (hash.startsWith("#/works/")) return hash;
     if (hash === "#/personal" || hash.startsWith("#/personal/")) return hash;
     return "home";
   };
-  const [page, setPage] = useState(getPage);
-  useEffect(() => {
-    const navigate = () => setPage(getPage());
-    window.addEventListener("hashchange", navigate);
-    return () => window.removeEventListener("hashchange", navigate);
-  }, []);
+  const page = getPage();
   useLayoutEffect(() => {
     document.title = page.startsWith("#/personal")
       ? `${(page === "#/personal" ? personalProjects[0] : personalProjects.find((item) => personalProjectHref(item.id) === page))?.title ?? "개인 프로젝트"} | 포트폴리오`
@@ -39,13 +36,13 @@ export default function App() {
     const positionPage = () => {
       if (cancelled) return;
       const target =
-        page === "home" &&
-        document.getElementById(window.location.hash.slice(1));
-      const top = target
+        page === "home" && navigation.hash !== "#home" &&
+        document.getElementById(navigation.hash.slice(1));
+      const top = navigation.restoreTop ?? (target
         ? target.getBoundingClientRect().top +
           window.scrollY -
           parseFloat(getComputedStyle(target).scrollMarginTop || "0")
-        : 0;
+        : 0);
       window.scrollTo({ top: Math.max(0, top), behavior: "instant" });
     };
     positionPage();
@@ -57,7 +54,7 @@ export default function App() {
     return () => {
       cancelled = true;
     };
-  }, [page]);
+  }, [page, navigation]);
   return page.startsWith("#/personal") ? (
     <PersonalProjectPage key={page} route={page} />
   ) : page.startsWith("#/works/") ? (

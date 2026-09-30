@@ -786,25 +786,7 @@ body {
   min-height: min(790px, 90svh) !important;
   padding-bottom: 105px;
 }
-/* Place the scroll cue inside the initial viewport; it scrolls with the page. */
-.top-dark::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: calc(100svh - 145px);
-  bottom: auto;
-  width: 1px;
-  height: 115px;
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    #a7c8da 45%,
-    #a7c8da 72%,
-    transparent 100%
-  );
-  opacity: 0.75;
-  pointer-events: none;
-}
+
 .career,
 .works {
   position: relative;
@@ -1352,18 +1334,72 @@ body {
   object-position: center;
 }
 
-/* Mobile hero stacks vertically: reserve real space for its content, and
-   anchor the scroll cue in the transition area after the collage. */
+/* Mobile hero stacks vertically with space reserved for its content. */
 @media (max-width: 760px) {
   .top-dark .hero {
-    padding-top: 135px;
+    padding-top: clamp(36px, 7svh, 64px);
     padding-bottom: 25px;
   }
   .top-dark .hero > div {
     top: 0;
   }
-  .top-dark::after {
-    top: auto;
-    bottom: clamp(40px, 8vh, 80px);
+
+}
+
+/* Keep the cue close to the content, centered across both hero columns. */
+.hero-scroll-indicator {
+  grid-column: 1 / -1;
+  justify-self: center;
+  margin-top: clamp(96px, 10svh, 112px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  color: #acc6d5;
+  font: 500 11px Manrope, sans-serif;
+  letter-spacing: 0.13em;
+  text-align: center;
+  pointer-events: none;
+}
+.hero-scroll-indicator::after {
+  content: "";
+  width: 1px;
+  height: clamp(48px, 8svh, 90px);
+  background: linear-gradient(180deg, transparent, #a7c8da 45%, #a7c8da 72%, transparent);
+  opacity: 0.75;
+}
+@media (max-width: 760px) {
+  .top-dark .hero h1 {
+    font-size: clamp(40px, 11.2vw, 58px);
+    margin: clamp(24px, 4svh, 36px) 0 28px;
+  }
+  .top-dark .hero .ko {
+    font-size: 17px;
+  }
+  .top-dark .hero .sub {
+    font-size: 13px;
+    line-height: 1.8;
+    margin-top: 12px;
+  }
+  .hero-contact {
+    margin-top: 24px;
+  }
+  .hero-contact + .hero-foot {
+    margin-top: 12px;
+  }
+  .hero-scroll-indicator {
+    order: 3;
+    margin-top: 0;
+    font-size: 10px;
+    gap: 8px;
+  }
+  .hero-scroll-indicator::after {
+    height: clamp(24px, 4svh, 36px);
+  }
+  .top-dark .hero {
+    row-gap: 24px;
+  }
+  .top-dark .hero > .game-collage {
+    order: 2;
   }
 }

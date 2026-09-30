@@ -12,7 +12,6 @@ import {
   projects,
 } from "../data/home";
 export default function HomePage() {
-  const [active, setActive] = useState("home");
   const [copyStatus, setCopyStatus] = useState("");
   const copyTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(
@@ -70,57 +69,13 @@ export default function HomePage() {
     };
   }, []);
 
-  useEffect(() => {
-    let frame = 0;
-    const updateActiveSection = () => {
-      frame = 0;
-      const ids = ["home", "works", "personal"];
-      let current = "home";
-      for (const id of ids) {
-        const element = document.getElementById(id);
-        if (
-          element &&
-          element.getBoundingClientRect().top < window.innerHeight * 0.5
-        )
-          current = id;
-      }
-      // Near the page end, a target may never reach the viewport midpoint.
-      // Prefer the requested anchor while it is actually visible.
-      const targetId = window.location.hash.slice(1);
-      const target = ids.includes(targetId)
-        ? document.getElementById(targetId)
-        : null;
-      if (target) {
-        const bounds = target.getBoundingClientRect();
-        const headerBottom =
-          document.querySelector(".site-header")?.getBoundingClientRect()
-            .bottom ?? 0;
-        if (bounds.top >= headerBottom - 1 && bounds.top < window.innerHeight)
-          current = targetId;
-      }
-      setActive(current);
-    };
-    const schedule = () => {
-      if (!frame) frame = requestAnimationFrame(updateActiveSection);
-    };
-    window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
-    window.addEventListener("hashchange", schedule);
-    updateActiveSection();
-    return () => {
-      window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
-      window.removeEventListener("hashchange", schedule);
-      cancelAnimationFrame(frame);
-    };
-  }, []);
 
   return (
     <>
       <a className="skip-link" href="#works">
         본문으로 건너뛰기
       </a>
-      <SiteHeader active={active} />
+      <SiteHeader active="home" />
       <main>
         <div className="top-dark">
           <div className="shell">
@@ -180,13 +135,15 @@ export default function HomePage() {
                     </div>
                   </div>
                   <div className="hero-foot">
-                    <a className="link" href="#works">
+                    <a className="link" href="#/works">
                       {introduction.worksLinkText}
                     </a>
-                    <span className="note">{introduction.scrollHint}</span>
                   </div>
                 </div>
                 <GameCollage />
+                <span className="hero-scroll-indicator">
+                  <span>{introduction.scrollHint}</span>
+                </span>
               </section>
             </div>
           </div>

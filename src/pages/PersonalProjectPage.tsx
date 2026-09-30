@@ -24,7 +24,7 @@ export default function PersonalProjectPage({ route }: { route: string }) {
           {project ? (
             <>
               <header className="work-detail-intro">
-                <p className="work-detail-back">PERSONAL PROJECT</p>
+                <p className="work-detail-back">개인 프로젝트 / RECORDS</p>
                 <h1>{project.title}</h1>
                 {project.summary && (
                   <p className="work-detail-summary">{project.summary}</p>
