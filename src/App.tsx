@@ -1,7 +1,8 @@
+import { trackPageview } from "./utils/analytics";
 import { useHashNavigation } from "./hooks/useHashNavigation";
 import PersonalProjectPage from "./pages/PersonalProjectPage";
 import { personalProjects, personalProjectHref } from "./data/personalProjects";
-import { useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import HomePage from "./pages/HomePage";
 import QAPage from "./pages/QAPage";
 import WorkDetailPage from "./pages/WorkDetailPage";
@@ -55,6 +56,13 @@ export default function App() {
       cancelled = true;
     };
   }, [page, navigation]);
+  useEffect(() => {
+    const route = page === "home" ? "#home"
+      : page === "#/personal" && personalProjects[0]
+        ? personalProjectHref(personalProjects[0].id)
+        : page.startsWith("#/") ? page : "#/" + page;
+    trackPageview(route);
+  }, [page]);
   return page.startsWith("#/personal") ? (
     <PersonalProjectPage key={page} route={page} />
   ) : page.startsWith("#/works/") ? (
